@@ -26,111 +26,109 @@ public class AnggotaController {
     
     private FormAnggota formAnggota;
     private Anggota anggota;
-    private AnggotaDao dao;
+    private AnggotaDao anggotaDao;
     private Connection con;
-    private Koneksi K;
-    private Object JOptionePane;
+    private Koneksi koneksi;
     
     public AnggotaController(FormAnggota formAnggota){
         try {
             this.formAnggota = formAnggota;
-            dao= new AnggotaDaoImp();
-            K = new Koneksi();
-            con = K.getKoneksi();
+            anggotaDao = new AnggotaDaoImp();
+            con = new Koneksi().getKoneksi();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-  
-        
     }
     
-    public void clearForm(){
-        formAnggota.getTxtKodeAnggota().setText("");
-        formAnggota.getTxtNamaAnggota().setText("");
+    public void bersihForm(){
+        formAnggota.getTxtKodeanggota().setText("");
+        formAnggota.getTxtNamaanggota().setText("");   
         formAnggota.getTxtAlamat().setText("");
-           
     }
     
     public void isiCboJenisKelamin(){
-        formAnggota.getCboJeKel().removeAllItems();
-        formAnggota.getCboJeKel().addItem("L");
-        formAnggota.getCboJeKel().addItem("P");
+        formAnggota.getCboJeniskelamin().removeAllItems();
+        formAnggota.getCboJeniskelamin().addItem("L");
+        formAnggota.getCboJeniskelamin().addItem("P");
     }
-       public void insert(){
-        
+    
+    public void insert(){
         try {
             anggota = new Anggota();
-            anggota.setKodeanggota(formAnggota.getTxtKodeAnggota().getText());
-            anggota.setNamaanggota(formAnggota.getTxtNamaAnggota().getText());
+            anggota.setKodeanggota(formAnggota.getTxtKodeanggota().getText());
+            anggota.setNamaanggota(formAnggota.getTxtNamaanggota().getText());
             anggota.setAlamat(formAnggota.getTxtAlamat().getText());
-            anggota.setJeniskelamin (formAnggota.getCboJeKel().getSelectedItem().toString());
-            dao.insert(con,anggota);
-            JOptionPane.showMessageDialog(formAnggota, "Entri Ok");
-            
-            
+            anggota.setJeniskelamin(formAnggota.getCboJeniskelamin().getSelectedItem().toString());
+            anggotaDao.insert(con, anggota);
+            JOptionPane.showMessageDialog(formAnggota, "Entri OK");
         } catch (Exception ex) {
             Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-      
-     }
-        
-        public void update(){
+    }
+    
+    public void update(){
         try {
-            anggota = new Anggota();
-            anggota.setKodeanggota(formAnggota.getTxtKodeAnggota().getText());
-            anggota.setNamaanggota(
-                    formAnggota.getTxtNamaAnggota().getText());
-            anggota.setAlamat(
-                    formAnggota.getTxtAlamat().getText());
-            anggota.setJeniskelamin (
-                    formAnggota.getCboJeKel().getSelectedItem().toString());
-            dao.update(con,anggota);
+            anggota.setKodeanggota(formAnggota.getTxtKodeanggota().getText());
+            anggota.setNamaanggota(formAnggota.getTxtNamaanggota().getText());
+            anggota.setAlamat(formAnggota.getTxtAlamat().getText());
+            anggota.setJeniskelamin(formAnggota.getCboJeniskelamin().getSelectedItem().toString());
+            anggotaDao.update(con, anggota);
             JOptionPane.showMessageDialog(formAnggota, "Update Ok");
+        } catch (Exception ex) {
+           Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void delete(){
+        try {
+            anggotaDao.delete(con, anggota);
+            JOptionPane.showMessageDialog(formAnggota, "Delete Ok");
+        } catch (Exception ex) {
+            Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void cari(){
+        try {
+            String kode = formAnggota.getTxtKodeanggota().getText();
+            anggota = anggotaDao.getAnggota(con, kode);
+            if(anggota != null){
+                formAnggota.getTxtNamaanggota().setText(anggota.getNamaanggota());
+                formAnggota.getTxtAlamat().setText(anggota.getAlamat());
+                formAnggota.getCboJeniskelamin().setSelectedItem(anggota.getJeniskelamin());
+            }else {
+                JOptionPane.showMessageDialog(formAnggota, "Data tidak ada");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void tabelKlik(){
+        try {
+            String kode = formAnggota.getTblAnggota()
+                    .getValueAt(formAnggota.getTblAnggota().getSelectedRow(),0)
+                    .toString();
+            anggota = anggotaDao.getAnggota(con, kode);
+            formAnggota.getTxtKodeanggota().setText(anggota.getKodeanggota());
+            formAnggota.getTxtNamaanggota().setText(anggota.getNamaanggota());
+            formAnggota.getTxtAlamat().setText(anggota.getAlamat());
+            formAnggota.getCboJeniskelamin().setSelectedItem(anggota.getJeniskelamin());
         } catch (Exception ex) {
             Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
     
-     public void delete(){
-     
+    
+    public void tampil(){
         try {
-            dao.delete(con, anggota);
-            JOptionPane.showMessageDialog(formAnggota, "Delete Ok");
-        } catch (Exception ex) {
-            Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-     }
-     
-     public void cari(){
-        
-        try {
-            String kode = formAnggota.getTxtKodeAnggota().getText();
-            anggota = dao.getAnggota(con,kode);
-            if(anggota != null){
-                formAnggota.getTxtNamaAnggota().setText(anggota.getNamaanggota());
-                formAnggota.getTxtAlamat().setText(anggota.getAlamat());
-                formAnggota.getCboJeKel().setSelectedItem(anggota.getJeniskelamin());
-            }else{
-                JOptionPane.showMessageDialog(formAnggota, "Data Tidak Ada");
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-     }
-     
-     public void tampil(){
-        try {
-            DefaultTableModel tabel =(DefaultTableModel) formAnggota.getTblAnggota().getModel();
+            DefaultTableModel tabel = (DefaultTableModel) formAnggota.getTblAnggota().getModel();
             tabel.setRowCount(0);
-            List<Anggota> list= dao.getAllAnggota(con);
-            for (Anggota anggota1 : list){
-                Object[] row= {
+            List<Anggota> list = anggotaDao.getAllAnggota(con);
+            for (Anggota anggota1 : list) {
+                Object[] row = {
                     anggota1.getKodeanggota(),
                     anggota1.getNamaanggota(),
                     anggota1.getAlamat(),
@@ -140,11 +138,8 @@ public class AnggotaController {
             }
         } catch (Exception ex) {
             Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        }
-     
+        }   
+    }
 }
-
 
 

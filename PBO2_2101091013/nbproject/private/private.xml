@@ -3,6 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/siti/model/Anggota.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/uts_a/dao/NewClass.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/uts_a/model/Pelanggan.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/uts_a/dao/PelangganDaoImp.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/uts_a/dao/PelangganDao.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/uts_a/view/FormPelanggan.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/siti/dao/AnggotaDao.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/uts_a/dao/Koneksi.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/uts_a/controller/PelangganController.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/siti/controller/AnggotaController.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/siti/view/FormAnggota.java</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/PBO2_2101091013/src/siti/dao/AnggotaDaoImp.java</file>
         </group>
