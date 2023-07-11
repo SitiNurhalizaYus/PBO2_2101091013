@@ -50,9 +50,7 @@ public class PeminjamanController {
             bukuDao = new BukuDaoImp();
             Koneksi k = new Koneksi();
             con = k.getKoneksi();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -115,14 +113,13 @@ public class PeminjamanController {
     public void delete() {
         try {
             peminjamanDao.delete(con, peminjaman);
-            JOptionPane.showMessageDialog(formPeminjaman, "Delete Data Ok");
+            JOptionPane.showMessageDialog(formPeminjaman, "Delete Ok");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(formPeminjaman, ex.getMessage());
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void getPeminjaman(){
+        
+    public void tabelKlik(){
         try {
             String kodeanggota = formPeminjaman.getTabelPeminjaman()
                     .getValueAt(formPeminjaman.getTabelPeminjaman().getSelectedRow(), 0).toString();
@@ -130,7 +127,9 @@ public class PeminjamanController {
                     .getValueAt(formPeminjaman.getTabelPeminjaman().getSelectedRow(), 1).toString();
             String tglpinjam = formPeminjaman.getTabelPeminjaman()
                     .getValueAt(formPeminjaman.getTabelPeminjaman().getSelectedRow(), 2).toString();
-            peminjaman = peminjamanDao.getPeminjaman(con, kodeanggota, kodebuku, tglpinjam);
+            String tglkembali = formPeminjaman.getTabelPeminjaman()
+                    .getValueAt(formPeminjaman.getTabelPeminjaman().getSelectedRow(), 3).toString();
+            peminjaman = peminjamanDao.getPeminjaman(con, kodeanggota, kodebuku, tglpinjam, tglkembali);
             if(peminjaman!=null){
                 Anggota anggota = anggotaDao.getAnggota(con, peminjaman.getKodeanggota());
                 formPeminjaman.getCboKodeanggota()
@@ -162,5 +161,6 @@ public class PeminjamanController {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     
 }
 

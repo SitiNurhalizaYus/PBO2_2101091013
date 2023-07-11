@@ -74,41 +74,43 @@ public class FormAnggota extends javax.swing.JFrame {
         btnCari = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAnggota = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Form Anggota");
         getContentPane().setLayout(null);
 
         jLabel1.setText("Kode Anggota");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 20, 100, 14);
-
-        txtKodeanggota.setText("jTextField1");
+        jLabel1.setBounds(20, 60, 100, 14);
         getContentPane().add(txtKodeanggota);
-        txtKodeanggota.setBounds(140, 20, 250, 30);
+        txtKodeanggota.setBounds(140, 60, 250, 30);
 
         jLabel2.setText("Nama Anggota");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 50, 120, 14);
+        jLabel2.setBounds(20, 90, 120, 14);
 
-        txtNamaanggota.setText("jTextField2");
+        txtNamaanggota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaanggotaActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtNamaanggota);
-        txtNamaanggota.setBounds(140, 50, 250, 30);
+        txtNamaanggota.setBounds(140, 90, 250, 30);
 
         jLabel3.setText("Alamat");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 80, 120, 14);
-
-        txtAlamat.setText("jTextField3");
+        jLabel3.setBounds(20, 120, 120, 14);
         getContentPane().add(txtAlamat);
-        txtAlamat.setBounds(140, 80, 250, 30);
+        txtAlamat.setBounds(140, 120, 250, 30);
 
         jLabel4.setText("Jenis Kelamin");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 110, 110, 14);
+        jLabel4.setBounds(20, 150, 110, 14);
 
         cboJeniskelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "L", "P" }));
         getContentPane().add(cboJeniskelamin);
-        cboJeniskelamin.setBounds(140, 110, 130, 30);
+        cboJeniskelamin.setBounds(140, 150, 130, 30);
 
         btnInsert.setText("Insert");
         btnInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +119,7 @@ public class FormAnggota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnInsert);
-        btnInsert.setBounds(20, 160, 70, 23);
+        btnInsert.setBounds(20, 200, 70, 23);
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -126,15 +128,25 @@ public class FormAnggota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnUpdate);
-        btnUpdate.setBounds(110, 160, 70, 23);
+        btnUpdate.setBounds(110, 200, 70, 23);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(200, 160, 70, 23);
+        btnDelete.setBounds(200, 200, 70, 23);
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancel);
-        btnCancel.setBounds(290, 160, 70, 23);
+        btnCancel.setBounds(290, 200, 70, 23);
 
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +155,7 @@ public class FormAnggota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnExit);
-        btnExit.setBounds(380, 160, 80, 23);
+        btnExit.setBounds(380, 200, 80, 23);
 
         btnCari.setText("Cari");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +164,7 @@ public class FormAnggota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCari);
-        btnCari.setBounds(400, 20, 60, 23);
+        btnCari.setBounds(400, 60, 60, 23);
 
         tblAnggota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,9 +182,14 @@ public class FormAnggota extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblAnggota);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 202, 452, 270);
+        jScrollPane1.setBounds(10, 240, 452, 210);
 
-        setSize(new java.awt.Dimension(493, 527));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Anggota");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(200, 20, 70, 20);
+
+        setSize(new java.awt.Dimension(493, 524));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -187,6 +204,7 @@ public class FormAnggota extends javax.swing.JFrame {
         // TODO add your handling code here:
         controller.insert();
         controller.bersihForm();
+        controller.tampil();
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
@@ -203,6 +221,22 @@ public class FormAnggota extends javax.swing.JFrame {
         // TODO add your handling code here:
         controller.tabelKlik();
     }//GEN-LAST:event_tblAnggotaMouseClicked
+
+    private void txtNamaanggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaanggotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNamaanggotaActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        controller.bersihForm();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        controller.delete();
+        controller.bersihForm();
+        controller.tampil();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,6 +285,7 @@ public class FormAnggota extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblAnggota;
     private javax.swing.JTextField txtAlamat;

@@ -101,6 +101,21 @@ public class BukuController {
         }
     }
     
+    public void tabelKlik(){
+        try {
+            String kode = formBuku.getTblBuku()
+                    .getValueAt(formBuku.getTblBuku().getSelectedRow(),0)
+                    .toString();
+            buku = bukuDao.getBuku(con, kode);
+            formBuku.getTxtKodeBuku().setText(buku.getKodebuku());
+            formBuku.getTxtJudul().setText(buku.getJudul());
+            formBuku.getTxtPengarang().setText(buku.getPengarang());
+            formBuku.getTxtPenerbit().setText(buku.getPenerbit());
+        } catch (Exception ex) {
+            Logger.getLogger(BukuController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
     public void tampil(){
         try {
             DefaultTableModel tabel = (DefaultTableModel) formBuku.getTblBuku().getModel();

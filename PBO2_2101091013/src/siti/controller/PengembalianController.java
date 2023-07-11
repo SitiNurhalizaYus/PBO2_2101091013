@@ -74,13 +74,13 @@ public class PengembalianController {
                         p.getKodeanggota());
                 Peminjaman pinjam = peminjamanDao
                         .getPeminjaman(connection, p.getKodeanggota(), 
-                                p.getKodebuku(), p.getTglpinjam());
+                                p.getKodebuku(), p.getTglpinjam(), p.getTglkembali());
                 Object[] row = {
                     p.getKodeanggota(),
                     anggota.getNamaanggota(),
                     p.getKodebuku(),
-                    pinjam.getTglpinjam(),
-                    pinjam.getTglkembali(),
+                    p.getTglpinjam(),
+                    p.getTglkembali(),
                     p.getTglkembalikan(),
                     p.getTerlambat(),
                     p.getDenda()
@@ -99,13 +99,16 @@ public class PengembalianController {
                             .getSelectedRow(), 0).toString();
             String kodebuku = formPengembalian.getTabelPengembalian()
                     .getValueAt(formPengembalian.getTabelPengembalian()
-                            .getSelectedRow(), 2).toString();
+                            .getSelectedRow(), 1).toString();
             String tglpinjam = formPengembalian.getTabelPengembalian()
+                    .getValueAt(formPengembalian.getTabelPengembalian()
+                            .getSelectedRow(), 2).toString();
+            String tglkembali = formPengembalian.getTabelPengembalian()
                     .getValueAt(formPengembalian.getTabelPengembalian()
                             .getSelectedRow(), 3).toString();
             pengembalian = new Pengembalian();
             Peminjaman peminjaman = peminjamanDao
-                    .getPeminjaman(connection, kodeAnggota, kodebuku, tglpinjam);
+                    .getPeminjaman(connection, kodeAnggota, kodebuku, tglpinjam, tglkembali);
             int terlambat = pengembalianDao
                     .selisihTanggal(connection, pengembalian.getTglkembalikan(),
                             peminjaman.getTglkembali());

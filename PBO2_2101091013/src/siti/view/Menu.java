@@ -114,7 +114,8 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 383, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(618, 443));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

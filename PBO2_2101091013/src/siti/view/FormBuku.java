@@ -76,6 +76,7 @@ public class FormBuku extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Form Buku");
 
         jLabel1.setText("Kode Buku");
 
@@ -85,13 +86,11 @@ public class FormBuku extends javax.swing.JFrame {
 
         jLabel4.setText("Penerbit");
 
-        txtKodeBuku.setText("jTextField1");
-
-        txtJudul.setText("jTextField1");
-
-        txtPengarang.setText("jTextField1");
-
-        txtPenerbit.setText("jTextField1");
+        txtKodeBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKodeBukuActionPerformed(evt);
+            }
+        });
 
         btnCari.setText("Search");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +148,11 @@ public class FormBuku extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblBuku.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBukuMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblBuku);
@@ -244,7 +248,8 @@ public class FormBuku extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(579, 634));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
@@ -282,6 +287,15 @@ public class FormBuku extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void tblBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBukuMouseClicked
+        // TODO add your handling code here:
+        controller.tabelKlik();
+    }//GEN-LAST:event_tblBukuMouseClicked
+
+    private void txtKodeBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodeBukuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKodeBukuActionPerformed
 
     /**
      * @param args the command line arguments
