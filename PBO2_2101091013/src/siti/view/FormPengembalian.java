@@ -20,46 +20,51 @@ public class FormPengembalian extends javax.swing.JFrame {
     /**
      * Creates new form FormPengembalian
      */
+    /**
+     * Creates new form FormPengembalian
+     */
     PengembalianController controller;
-    public FormPengembalian() throws ClassNotFoundException {
+    public FormPengembalian() {
         initComponents();
+       
         controller = new PengembalianController(this);
         controller.clearForm();
         controller.tampil();
-    }
-
-    public JTextField getTxtKodeAnggota() {
-        return txtKodeAnggota;
-    }
-
-    public JTextField getTxtKodebuku() {
-        return txtKodebuku;
-    }
-
-    public JTable getTabelPengembalian() {
-        return tabelPengembalian;
-    }
-
-    public JTextField getTxtDenda() {
-        return txtDenda;
-    }
-
-    public JTextField getTxtTerlambat() {
-        return txtTerlambat;
     }
 
     public JTextField getTxtTglDikembalikan() {
         return txtTglDikembalikan;
     }
 
-    public JTextField getTxtTglKembali() {
-        return txtTglKembali;
-    }
-
     public JTextField getTxtTglPinjam() {
         return txtTglPinjam;
     }
-    
+
+    public JTable getTblPengembalian() {
+        return tabelPengembalian;
+    }
+
+   
+
+    public JTextField getTxtDenda() {
+        return txtDenda;
+    }
+
+    public JTextField getTxtKodeAnggota() {
+        return txtKodeAnggota;
+    }
+
+    public JTextField getTxtKodeBuku() {
+        return txtKodebuku;
+    }
+
+    public JTextField getTxtTerlambat() {
+        return txtTerlambat;
+    }
+
+    public JTextField getTxtTglKembali() {
+        return txtTglKembali;
+    }
     
 
     /**
@@ -141,6 +146,11 @@ public class FormPengembalian extends javax.swing.JFrame {
         txtDenda.setBounds(140, 200, 120, 30);
 
         btnInsert.setText("Insert");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnInsert);
         btnInsert.setBounds(20, 240, 100, 30);
 
@@ -185,7 +195,13 @@ public class FormPengembalian extends javax.swing.JFrame {
     private void tabelPengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelPengembalianMouseClicked
         // TODO add your handling code here:
         controller.getPengembalian();
+        controller.tampil();
     }//GEN-LAST:event_tabelPengembalianMouseClicked
+
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        // TODO add your handling code here:
+        controller.tampil();
+    }//GEN-LAST:event_btnInsertActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,11 +233,7 @@ public class FormPengembalian extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new FormPengembalian().setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(FormPengembalian.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new FormPengembalian().setVisible(true);
             }
         });
     }

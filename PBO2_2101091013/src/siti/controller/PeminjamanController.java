@@ -21,7 +21,6 @@ import siti.model.Buku;
 import siti.model.Peminjaman;
 import siti.view.FormPeminjaman;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -127,9 +126,7 @@ public class PeminjamanController {
                     .getValueAt(formPeminjaman.getTabelPeminjaman().getSelectedRow(), 1).toString();
             String tglpinjam = formPeminjaman.getTabelPeminjaman()
                     .getValueAt(formPeminjaman.getTabelPeminjaman().getSelectedRow(), 2).toString();
-            String tglkembali = formPeminjaman.getTabelPeminjaman()
-                    .getValueAt(formPeminjaman.getTabelPeminjaman().getSelectedRow(), 3).toString();
-            peminjaman = peminjamanDao.getPeminjaman(con, kodeanggota, kodebuku, tglpinjam, tglkembali);
+            peminjaman = peminjamanDao.getPeminjaman(con, kodeanggota, kodebuku, tglpinjam);
             if(peminjaman!=null){
                 Anggota anggota = anggotaDao.getAnggota(con, peminjaman.getKodeanggota());
                 formPeminjaman.getCboKodeanggota()
@@ -148,12 +145,12 @@ public class PeminjamanController {
             DefaultTableModel tabel = (DefaultTableModel) formPeminjaman.getTabelPeminjaman().getModel();
             tabel.setRowCount(0);
             List<Peminjaman> list = peminjamanDao.getAllPeminjaman(con);
-            for (Peminjaman peminjaman1 : list) { 
+            for (Peminjaman peminjaman : list) { 
                 Object[] row = {
-                    peminjaman1.getKodeanggota(),
-                    peminjaman1.getKodebuku(),
-                    peminjaman1.getTglpinjam(),
-                    peminjaman1.getTglkembali()
+                    peminjaman.getKodeanggota(),
+                    peminjaman.getKodebuku(),
+                    peminjaman.getTglpinjam(),
+                    peminjaman.getTglkembali()
                 };
                 tabel.addRow(row);
             }

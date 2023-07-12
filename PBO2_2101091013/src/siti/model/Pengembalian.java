@@ -13,17 +13,12 @@ import java.text.SimpleDateFormat;
  * @author siti nurhaliza yus
  */
 public class Pengembalian {
-    private String kodeanggota;
-    private String kodebuku;
-    private String tglpinjam;
-    private String tglkembalikan;
+    public String kodeanggota;
+    public String kodebuku;
+    public String tglpinjam;
+    public String tgldikembalikan;
     private int terlambat;
     private double denda;
-    private String tglkembali;
-    
-    public Pengembalian(){
-        
-    }
 
     public String getKodeanggota() {
         return kodeanggota;
@@ -48,24 +43,17 @@ public class Pengembalian {
     public void setTglpinjam(String tglpinjam) {
         this.tglpinjam = tglpinjam;
     }
-    
-    public void setTglkembali(String tglkembali) {
-        this.tglkembali = tglkembali;
-    }
-    
-    public String getTglkembali() {
-        return tglkembali;
-    }
 
-    public String getTglkembalikan() {
+    public String getTgldikembalikan() {
         SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
         Date tgl = new Date();
-        tglkembalikan = s.format(tgl);
-        return tglkembalikan;
+        tgldikembalikan = s.format(tgl);
+        return tgldikembalikan;
     }
 
-    public void setTglkembalikan(String tglkembalikan) {
-        this.tglkembalikan = tglkembalikan;
+    public void setTgldikembalikan(String tgldikembalikan) {
+       
+        this.tgldikembalikan = tgldikembalikan;
     }
 
     public int getTerlambat() {
@@ -77,18 +65,12 @@ public class Pengembalian {
     }
 
     public double getDenda() {
-        denda = terlambat * 1000;
+        denda = terlambat= terlambat;
         return denda;
     }
 
     public void setDenda(double denda) {
         this.denda = denda;
     }
-
-    public void setDenda() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
     
 }

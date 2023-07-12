@@ -46,7 +46,7 @@ public class FormPeminjaman extends javax.swing.JFrame {
     }
 
     public JTextField getTxtTglKembali() {
-        return txtTglPinjam;
+        return txtTglKembali;
     }
 
     
@@ -143,15 +143,7 @@ public class FormPeminjaman extends javax.swing.JFrame {
             new String [] {
                 "Kode Anggota", "Kode Buku", "Tgl Pinjam", "Tgl Kembali"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         tabelPeminjaman.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelPeminjamanMouseClicked(evt);
